@@ -1,9 +1,9 @@
-## Boolean Logic Calculator
+## Kalkulator Logiki Boolowskiej
 
-An interactive tool designed to evaluate logical expressions, generate complete truth tables with intermediate steps, and derive canonical forms.
+Interaktywne narzędzie przeznaczone do ewaluacji wyrażeń logicznych, generowania pełnych tabel prawdy z etapami pośrednimi oraz wyznaczania form kanonicznych.
 
-### Features
-- **Expression Evaluation:** Compute complex logical expressions with support for standard operators.
-- **Detailed Truth Tables:** View a step-by-step breakdown of intermediate operations leading to the final result.
-- **Canonical Forms:** Automatically generate minterms, maxterms, PDNF (Disjunctive Normal Form / DNF), and PCNF (Conjunctive Normal Form / CNF).
-- **Interactive Learning & Self-Check:** Test your own derivations and read built-in explanations of core logical concepts.
+### Funkcje
+- **Ewaluacja wyrażeń:** Obliczanie złożonych wyrażeń logicznych z obsługą standardowych operatorów.
+- **Szczegółowe tabele prawdy:** Podgląd krok po kroku operacji pośrednich prowadzących do wyniku końcowego.
+- **Formy kanoniczne:** Automatyczne generowanie minitermów, makstermów, PDNF (Doskonała Dysjunkcyjna Forma Kanoniczna / DNF) oraz PCNF (Doskonała Koniunkcyjna Forma Kanoniczna / CNF).
+- **Interaktywna nauka i samosprawdzanie:** Możliwość testowania własnych obliczeń oraz dostęp do wbudowanych objaśnień kluczowych pojęć z logiki.
