@@ -43,15 +43,63 @@ const terms: Term[] = [
     ],
   },
 
-  //   2. Makstermy (iloczyn makstermów – ∏)
-
-  // Czym są Maksterm (suma prosta) to alternatywa (operacja OR, ∨) wszystkich zmiennych wejściowych (w postaci prostej lub zanegowanej), dla której wartość całej funkcji logicznej wynosi 0.
-
-  // Jak działa w praktyce W tabeli prawdy maksterm odpowiada tym wierszom, w których wynik funkcji to 0. Oznaczamy je symbolem iloczynu ∏ z indeksem wierszy, w których funkcja przyjmuje fałsz, np. ∏(0, 2, 4).
-
-  // Zastosowanie Służą do budowania postaci kanonicznej iloczynu sum (PCNF).
   {
     label: "Makstermy (iloczyn makstermów – ∏)",
+    description: (
+      <>
+        Maksterm (suma prosta) to alternatywa (operacja OR, <Sym>∨</Sym>) wszystkich zmiennych wejściowych (w postaci prostej lub zanegowanej), dla której wartość całej funkcji logicznej wynosi 0.
+      </>
+    ),
+    subThema: [
+      {
+        label: "Jak działa w praktyce",
+        description: (
+          <>
+            W tabeli prawdy maksterm odpowiada tym wierszom, w których wynik funkcji to 0. Oznaczamy je symbolem iloczynu <Sym>∏</Sym> z indeksem wierszy, w których funkcja przyjmuje fałsz, np. <Sym>∏(0, 2, 4)</Sym>.
+          </>
+        ),
+      },
+      {
+        label: "Zastosowanie",
+        description: (
+          <>
+            Służą do budowania postaci kanonicznej iloczynu sum (<Sym>PCNF</Sym>).
+          </>
+        ),
+      },
+    ],
+  },
+  // PDNF (Postać Kanoniczna Sumy Iloczynów)
+  {
+    label: "PDNF (Postać Kanoniczna Sumy Iloczynów – ∑)",
+    description: (
+      <>
+        Minterm (iloczyn prosty) to koniunkcja (operacja AND, <Sym>∧</Sym>) wszystkich zmiennych wejściowych (w postaci prostej lub zanegowanej), dla której wartość całej funkcji logicznej wynosi 1.
+      </>
+    ),
+    subThema: [
+      {
+        label: "Jak działa w praktyce",
+        description: (
+          <>
+            W tabeli prawdy minterm odpowiada tym wierszom, w których wynik funkcji to 1. Oznaczamy je symbolem sumy <Sym>∑</Sym> z indeksem wierszy, w których funkcja przyjmuje prawdę, np. <Sym>∑(1, 3, 5)</Sym>.
+          </>
+        ),
+      },
+      {
+        label: "Zastosowanie",
+        description: (
+          <>
+            Służą do budowania postaci kanonicznej sumy iloczynów (<Sym>PDNF</Sym>).
+          </>
+        ),
+      },
+    ],
+  },
+
+  // PCNF (Postać Kanoniczna Iloczynu Sum)
+  {
+    label: "PCNF (Postać Kanoniczna Iloczynu Sum – ∏)",
     description: (
       <>
         Maksterm (suma prosta) to alternatywa (operacja OR, <Sym>∨</Sym>) wszystkich zmiennych wejściowych (w postaci prostej lub zanegowanej), dla której wartość całej funkcji logicznej wynosi 0.
@@ -195,7 +243,7 @@ export default function Home() {
   const pcnf = pdnf_pcnf(result, "maks");
 
   return (
-    <main className="min-h-dvh p-4 lg:px-0">
+    <main className="min-h-dvh md:p-4 lg:px-0">
       <div className="flex w-full min-w-0 flex-col md:flex-row py-10 gap-5 px-4">
         <aside className="md:sticky top-5 flex w-full min-w-0 h-fit shrink-0 flex-col rounded-xl border border-line bg-surface md:top-4 md:w-80">
           <div className="w-full border-b  border-line">
@@ -221,7 +269,7 @@ export default function Home() {
               >
                 <div className="text-base">
                   <h2 className="text-sm font-semibold text-ink">Wprowadź zadanie</h2>
-                  <h2 className="text-xs text-muted mt-1">Wprowadź przykładowe zadanie aby zostało ono rozwiązane (Negacje naley zapisać jako ![zmienna])</h2>
+                  <h2 className="text-xs text-muted mt-1">Wpisz wyrażenie logiczne, które chcesz rozwiązać (negację oznacz jako ![zmienna]).</h2>
                 </div>
 
                 <input
@@ -249,7 +297,7 @@ export default function Home() {
           <div className="p-5 border-b border-line">
             <div className="my-2">
               <h2 className="text-sm font-semibold text-ink">Przyładowe zadania</h2>
-              <p className="text-xs text-muted mt-2">Mają na celu sprawdzenie podstawowego działania aplikacji</p>
+              <p className="text-xs text-muted mt-2">Kliknij, aby przetestować działanie kalkulatora na gotowych przykładach:</p>
             </div>
             <div className="mt-2 flex w-full min-w-0 flex-wrap gap-2">
               {EXAMPLES.map((ex) => (
@@ -270,7 +318,7 @@ export default function Home() {
             >
               <div className="text-base">
                 <h2 className="text-xs font-semibold text-ink">Sprawdź rozwiązanie</h2>
-                <h2 className="text-xs font-medium text-muted mt-2">Wpisz swój wnik końcowy z ostatniej kolumny tabeli i sprawdź poprawnośc wykonania zadania</h2>
+                <h2 className="text-xs font-medium text-muted mt-2">Wpisz wynik końcowy z ostatniej kolumny tabeli, aby sprawdzić, czy zadanie zostało rozwiązane poprawnie.</h2>
               </div>
 
               <input
@@ -309,7 +357,7 @@ export default function Home() {
                     <thead className="sticky top-0 bg-surface-raised text-subtle">
                       <tr className="text-lg">
                         {Array.from({ length: n }, (_, i) => (
-                          <th key={`var-${i}`} className="px-2 py-2  text-ink min-w-40">
+                          <th key={`var-${i}`} className="py-2  text-ink min-w-30">
                             {String.fromCharCode(65 + i)}
                           </th>
                         ))}
@@ -395,7 +443,7 @@ export default function Home() {
               <div className={cn("flex flex-row justify-between transition-all duration-300 ease-in-out", isOpen.minima ? "py-4" : "py-2")}>
                 <div>
                   <h1 className="text-lg font-bold">Podstawowe zagadnienia</h1>
-                  <h2 className="mt-2 break-all text-xs font-semibold text-muted">Njawazniejsze pojęcia kluczowe do zrozumienia teorii Boolowskiej</h2>
+                  <h2 className="mt-2 break-all text-xs font-semibold text-muted">Kluczowe pojęcia, które ułatwią Ci zrozumienie algebry Boole’a</h2>
                 </div>
                 <ChevronDownIcon size={18} className={cn("text-muted transition-transform duration-300", isOpen.minima && "rotate-180")} />
               </div>
@@ -404,7 +452,7 @@ export default function Home() {
               <div className="mt-5 flex flex-col gap-6">
                 {terms.map((term) => (
                   <div key={term.label} className="flex flex-col gap-2 text-base pb-8 border-b border-line">
-                    <p className="font-bold bg-amber-50/4 p-2 rounded-sm">{term.label}</p>
+                    <p className=" bg-amber-50/4 p-2 rounded-sm">{term.label}</p>
                     <p>{term.description}</p>
                     {term.subThema?.map((sub) => (
                       <div key={sub.label} className="mt-2 flex flex-col gap-1 border-l border-line pl-4">
